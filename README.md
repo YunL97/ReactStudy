@@ -29,3 +29,50 @@ function Component(props){
     );
 }
 ```
+
+* 
+```
+// <Component>asdf</Component> 에서 asdf값을 사용하는법
+
+function Component(props) {
+    return <div>{props.children}</div>
+}
+```
+* 위 방식대로 props.children 을 사용하면 asdf값이 출력됨
+```
+function Component(props) {
+    return <div>{props.children}</div>
+}
+
+===
+
+const Component = () => {
+    return <div>{props.children}</div>
+}
+```
+
+* 자바스크립트에서 이벤트 리슨하는법
+```
+document.getElementById('root').addEventListener();//명령형 방싱
+```
+* 리액트에서 이벤트 리슨하는법
+```
+<button onClick ={ () => {console.log('asdf')}}>sadf</button>
+```
+* 리액트는 컴포넌트, jsx 코드를 반환
+* useState: 페이지를 반응형으로  만드는법
+```
+const Component = (props) => {
+    const [title, setTitle] = useState(props.title);
+    const clickHandler = () => {
+        setTitle('update');
+    }
+    return <div>{props.title }</div>
+}
+```
+* onChange 사용할때 인풋값 가져오는법
+```
+onChange = {(e) => {console.log(e.target.value);
+    }
+}
+```
