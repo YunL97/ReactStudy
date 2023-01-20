@@ -69,10 +69,59 @@ const Component = (props) => {
     }
     return <div>{props.title }</div>
 }
+
+//하나 바꾸면 여러개 변수 바꾸는법
+const [userInput, setUserInput] = useState({
+    enteredTitle '',
+    enteredAmount: '',
+    enteredDate: ''
+});
+
+const clickHandler = () => {
+        setUserInput({
+            ...userInput,
+           enteredTitle: event.target.value 
+        });
+    }
 ```
 * onChange 사용할때 인풋값 가져오는법
 ```
 onChange = {(e) => {console.log(e.target.value);
     }
 }
+```
+* 이전 state 에 의존하는 state 업데이트: 
+```
+const [userInput, setUserInput] = useState({
+    enteredTitle '',
+    enteredAmount: '',
+    enteredDate: ''
+});
+
+const clickHandler = () => {
+        setUserInput({
+            ...userInput,
+           enteredTitle: event.target.value 
+        });
+    }
+```
+* 위 코드는 이전 state에 의존하고 있음-> 위의 경우 세개의 상태로 접근x, 하나로 접근하는 방법을 사용하기 때문 ->이런식으로 업데이트하는 방법은 좋지 못함
+```
+//방법
+const clickHandler = () => {
+        setUserInput((이전state) => {
+            return {...이전state, enteredTitle: event.target.value};
+        });
+    }
+```
+* 폼 제출 버튼을 클릭하면 페이지가 다시로드되는이유: 브라우저는 폼이 제출될때마다 호스팅하고 있는 서버에 요청을 보내기떄문
+* preventDefault: 구체적으로 반응하지 않는 기본자바스크립트 동작 -> 기본 요청이 보내지는것을 막을 수 있음 -> 페이지 리로드를 막음
+* 리액트에서 부모컴포넌트에 데이터를 보내려면 callback함수를 써서 자식 데이터를 끌어오면 됨
+* useState 사용해서 이전 데이터를 받아오는법
+```
+  const addExpenseHandler = (expense) => {
+    setExpenses((prevExpenses) => {
+      return [expense, ...prevExpenses];
+    });
+  };
 ```
