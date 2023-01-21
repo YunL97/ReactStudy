@@ -1,6 +1,6 @@
 * js 파일에서 html코드가 실행되는이유: jsx라능 기능때문, react 팀이 개발하고 도입한 특수구문 
   * 백그라운드에서 진행되는 코드변환 과정 덕분
-
+ 
 * 리액트에 있는 컴포넌트는 단지 자바스크립트 함수
 * jsxcode: 
 ```
@@ -124,4 +124,10 @@ const clickHandler = () => {
       return [expense, ...prevExpenses];
     });
   };
+```
+
+ * jsx 조건문 사용법
+```
+//true 면 button 보여주고 아니면 버튼 보여주지마라
+{!false && <button>asdasdasd</button>}
 ```
