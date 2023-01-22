@@ -131,3 +131,10 @@ const clickHandler = () => {
 //true 면 button 보여주고 아니면 버튼 보여주지마라
 {!false && <button>asdasdasd</button>}
 ```
+* css모듈 사용해서 import로 가져와서 자기가 쓰고싶은 스타일을 지정해주는 게 리액트에서 권장하는 css모듈 사용법임 
+
+```
+import styles from './CourseInput.module.css';//모듈로 사용하려면 .module를 붙여야함
+
+<div className=${styles['form-control'] ${!isValid && styles.invalid}}>
+```
