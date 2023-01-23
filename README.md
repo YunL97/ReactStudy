@@ -138,3 +138,6 @@ import styles from './CourseInput.module.css';//모듈로 사용하려면 .modul
 
 <div className=${styles['form-control'] ${!isValid && styles.invalid}}>
 ```
+* 리액트 앱을 디버깅 하는방법:
+   * 코드 흐름, 에러 분석
+   * 중단점 으로 디버깅: 개발자 도구 디버깅으로 찾을 수있음
