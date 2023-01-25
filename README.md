@@ -115,7 +115,7 @@ const clickHandler = () => {
     }
 ```
 * 폼 제출 버튼을 클릭하면 페이지가 다시로드되는이유: 브라우저는 폼이 제출될때마다 호스팅하고 있는 서버에 요청을 보내기떄문
-* preventDefault: 구체적으로 반응하지 않는 기본자바스크립트 동작 -> 기본 요청이 보내지는것을 막을 수 있음 -> 페이지 리로드를 막음 ex) a태그를 눌렀는데 href 링크이동x, form 안에 submit 작동은 하는데 새로 실행하지 않게 하고싶을 떄
+* preventDefault: 구체적으로 반응하지 않는 기본자바스크립트 동작 -> 기본 요청이 보내지는것을 막을 수 있음 -> 페이지 리로드를 막음 ex) a태그를 눌렀는데 href 링크이동x, form 안에 submit 작동은 하는데 새로 실행하지 않게 하고싶을 떄 -> 다이얼로그가 떳을 때 onSubmit 안에 preventDefault를 쓰지 않으면 다이얼로그가 바로꺼진다.
 
 * 리액트에서 부모컴포넌트에 데이터를 보내려면 callback함수를 써서 자식 데이터를 끌어오면 됨
 * useState 사용해서 이전 데이터를 받아오는법
@@ -134,14 +134,12 @@ const clickHandler = () => {
 * 즉 목록의 아이템을 매핑할때는 항상 key를 추가해야합니다
 * Date 객체 getFullYear: date에서 4자리수 연도를 가져온다
 
-``` 
-
  * jsx 조건문 사용법
 ```
 //true 면 button 보여주고 아니면 버튼 보여주지마라
 {!false && <button>asdasdasd</button>}
 ```
-* css모듈 사용해서 import로 가져와서 자기가 쓰고싶은 스타일을 지정해주는 게 리액트에서 권장하는 css모듈 사용법임 
+* css모듈 사용해서 import로 가져와서 자기가 쓰고싶은 스타일을 지정해주는 게 리액트에서 권장하는 css모듈 사용법임 -> import styles 이런식으로 import 해오면 각 css파일마다 고유한 네임스페이스를 부여해주기 때문에 각 react컴포넌트는 완전히 격리된 스타일을 보장, -> 다른 css파일에 똑같은 클래스에대한 스타일이 정의되어있더라도, style.btn 이런식으로 쓴 클래스는 영향을 받지 않음
 
 ```
 import styles from './CourseInput.module.css';//모듈로 사용하려면 .module를 붙여야함
@@ -152,3 +150,47 @@ import styles from './CourseInput.module.css';//모듈로 사용하려면 .modul
    * 코드 흐름, 에러 분석
    * 중단점 으로 디버깅: 개발자 도구 디버깅으로 찾을 수있음
 
+* 태그 2개로 반환 못하는이유
+```
+return (
+    <h2>hi</h2>
+    <p>hihihi</p>
+)
+
+===
+
+return (
+    React.reateElement('h2', {}, 'hi')
+    React.reateElement('p', {}, 'hihi')
+) 
+-> 자바스크립트에서는 둘이상을 반환할 수 없기 때문
+```
+* 불필요한 내용을 렌더링 하는것은 일반적으로 프로그래밍에서는 좋은생각이 아님
+* React.Fragment: 의미없는 div 추가를 줄이기 위해서
+* 특정 컴포넌트가 깊숙히 있을때 body에 붙이고 싶을 때는포털 작업을 하면된다
+```
+//index.html
+//body 바로밑
+<div id="backdrop-root"></div>
+
+<React.Fragment>
+      {ReactDOM.createPortal(
+        <Backdrop onConfirm={props.onConfirm} />,
+        document.getElementById('backdrop-root')
+      )}
+   </React.Fragment>   
+```
+* useRef hook: 
+  * 함수형 컴포넌트 안에서만 사용가능
+  * const nameInputRef = useRef();
+  * input 태그에 ref = nameInputRef 를 추가 해서 useRef()와 연결
+  * DOM 노드를 확인할 수 있음 -> 조작가능 -> 그런데 조작하면안된다 -> 리액트에 의해서만 DOM이 조작되어야한다 
+  * 언제사용한는가
+    * 값을 여러개 입력하고 첫번째 칸으로 이동해야하는경우
+    * 속성값을 초기화 하고 싶은경우
+    * useRef로 컴포넌트 안의 변수 관리하기
+      * 리렌더링을 하지않으면서 컴포넌트속성을 조회, 수정할때
+      * setTimeout,setInterval을 통해 만들어진id
+      * scroll위치
+      * 배열에 새 항목을 추가할때 필요한 고유값 key
+  * 선언적으로 해결할 수 있는 문제는 ref 사용 지양
