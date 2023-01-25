@@ -206,4 +206,16 @@ return (
    * 어플리케이션에서 고려해야하는 작업
    * 무한루프나 버그에걸린것
 * useEffect: 사이드이팩트를 줄이기 위해 사용
-* 
+* 브라우저에는 우리가 사용할 수 있는 저장소가 여러개 있음
+   * 일반적으로 쿠키 ,로컬 저장소가 있음
+
+```
+//앱이 시작될때 한번만 실행된다
+  useEffect(() => {
+    console.log('EFFECT RUNNING');
+
+    return () => {
+      console.log('EFFECT CLEANUP');
+    };
+  }, []);
+```
