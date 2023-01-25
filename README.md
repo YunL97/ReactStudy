@@ -1,6 +1,6 @@
 * js 파일에서 html코드가 실행되는이유: jsx라능 기능때문, react 팀이 개발하고 도입한 특수구문 
   * 백그라운드에서 진행되는 코드변환 과정 덕분
-
+ 
 * 리액트에 있는 컴포넌트는 단지 자바스크립트 함수
 * jsxcode: 
 ```
@@ -125,6 +125,7 @@ const clickHandler = () => {
       return [expense, ...prevExpenses];
     });
   };
+
 ```
 * 새로운 아이템을 추가할때 리액트에게 알려주는 방법: key 사용
 * 만약 첫번째 배열에 div 태그같은 것을 넣으면 끝부분에 추가되고 모든 아이템들을 지나면서 안에있는 컨텐츠를 업데이트해준다 -> 성능이 좋지못함 -> 모든 목록을 업데이트 해야하고 버그를 만들수도 있기 때문
@@ -132,3 +133,22 @@ const clickHandler = () => {
 * key를 써주면 배열의 길이뿐만 아니라 아이템이 위치해야 할곳까지 인식해서 좀더 효율적인 방법으로 업데이트 할 수 있다.
 * 즉 목록의 아이템을 매핑할때는 항상 key를 추가해야합니다
 * Date 객체 getFullYear: date에서 4자리수 연도를 가져온다
+
+``` 
+
+ * jsx 조건문 사용법
+```
+//true 면 button 보여주고 아니면 버튼 보여주지마라
+{!false && <button>asdasdasd</button>}
+```
+* css모듈 사용해서 import로 가져와서 자기가 쓰고싶은 스타일을 지정해주는 게 리액트에서 권장하는 css모듈 사용법임 
+
+```
+import styles from './CourseInput.module.css';//모듈로 사용하려면 .module를 붙여야함
+
+<div className=${styles['form-control'] ${!isValid && styles.invalid}}>
+```
+* 리액트 앱을 디버깅 하는방법:
+   * 코드 흐름, 에러 분석
+   * 중단점 으로 디버깅: 개발자 도구 디버깅으로 찾을 수있음
+
