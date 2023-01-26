@@ -13,7 +13,8 @@ import Input from '../UI/Input/Input';
 import classes from './Login.module.css';
 
 const emailReducer = (state, action) => {
-  if (action.type === 'USER_INPUT') {
+  if (action.type === 'USER_INPUT') { //유저 인풋 받을때 마다 실행
+    console.log('sadfsdaf');
     return { value: action.val, isValid: action.val.includes('@') };
   }
   if (action.type === 'INPUT_BLUR') {
@@ -65,6 +66,7 @@ const Login = (props) => {
   const { isValid: passwordIsValid } = passwordState;
 
   useEffect(() => {
+    console.log('asd11' ,emailIsValid);
     const identifier = setTimeout(() => {
       console.log('Checking form validity!');
       setFormIsValid(emailIsValid && passwordIsValid);
@@ -102,7 +104,7 @@ const Login = (props) => {
     event.preventDefault();
     if (formIsValid) {
       authCtx.onLogin(emailState.value, passwordState.value);
-    } else if (!emailIsValid) {
+    } else if (!emailIsValid) { 
       emailInputRef.current.focus();
     } else {
       passwordInputRef.current.focus();

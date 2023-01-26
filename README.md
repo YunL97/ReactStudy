@@ -206,6 +206,10 @@ return (
    * 어플리케이션에서 고려해야하는 작업
    * 무한루프나 버그에걸린것
 * useEffect: 사이드이팩트를 줄이기 위해 사용
+  * 무언가에 대한 응답으로 실행되는 코드를 다루는데 도움이 된다.
+  * useEffect 에 timer 넣으면 여러번 실행될때 마지막 timer만 실행이 된다.
+  ㅣ
+
 * 브라우저에는 우리가 사용할 수 있는 저장소가 여러개 있음
    * 일반적으로 쿠키 ,로컬 저장소가 있음
 
@@ -219,3 +223,16 @@ return (
     };
   }, []);
 ```
+
+*  clearTimeOut: 앞에있는 settimeout를 지움 -> http 요청같은거 할때 한번만 보낼 수 있게 셋팅 가능
+*  useReducer: 복잡한 state에 유용
+  * 여러 state들이 함께 속해있는 경우
+  * useState를 대신해서 사용가능
+  * ```
+    const [state, dispatchFn] = useReducer(reducerFn, initialState, initFn);
+    ```
+  * state: state 스냅샷
+  * dispatchFn: 스냅샷 업데이트 ->reducerFn 함수 실행
+  * reducerFn: 최신 state 스냅샷을 자동으로 가져오는 함수, dispatchFn 데이터를 가져오고, 새로운 업데이트된 state를 반환
+  * initialState: 초기 state 설정
+  * initFn: 초기 state를 설정하기 위해 실행해야 하는 함수
