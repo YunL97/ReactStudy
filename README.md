@@ -247,5 +247,6 @@ return (
 
 * state가 둘이상이면 항상 리액트로 state를 관리해줘야한다
 * concat: 자바스크립트에 내장된 메소드 -> 배열에 새 항목을 추가해준다 -> push 와 달리 기존 배열을 편집하는게 아닌 새 배열을 반환
-* 
-* 
+
+* css에서 height 넘기면 스크롤 만드는법: max-height: 20rem, overflow:scroll 로하면됨
+* findIndex: 자바스크립트에 내장된 index
