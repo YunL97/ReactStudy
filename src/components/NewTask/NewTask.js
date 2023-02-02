@@ -6,6 +6,7 @@ const NewTask = (props) => {
   const { isLoading, error, sendRequest: sendTaskRequest } = useHttp();
 
   const createTask = (taskText, taskData) => {
+    console.log('999');
     const generatedId = taskData.name; // firebase-specific => "name" contains generated id
     const createdTask = { id: generatedId, text: taskText };
 
@@ -22,7 +23,7 @@ const NewTask = (props) => {
         },
         body: { text: taskText },
       },
-      createTask.bind(null, taskText)
+      createTask(null, taskText) // === applyData(data) 함수를 넣어줄때 실행이 되네
     );
   };
 

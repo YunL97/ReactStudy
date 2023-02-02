@@ -19,7 +19,9 @@ const useHttp = () => {
       }
 
       const data = await response.json();
+      console.log('888');
       applyData(data);
+      console.log('777');
     } catch (err) {
       setError(err.message || 'Something went wrong!');
     }
