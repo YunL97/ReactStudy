@@ -391,3 +391,4 @@ fetchMeals().catch((error) => {
       setHttpError(error.message);
     }
 ```
+* 일단 강의 보다보니까 검증이나 이런거는 백엔드에서 하는듯?
