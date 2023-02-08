@@ -414,3 +414,24 @@ reducers: {
       state.isAuthenticated = true;
     },
 ```
+* 리듀서 함수는 반드시 순수함수여야하고 부수효과가 없고 동기식이어야한다
+* reducers에서  
+  ```
+  a(state, action) {
+    const b = action.payload;
+  } 
+  a(10) //이면 action.payload에 10이 들어감
+  ```
+
+* 리듀서 함수 안에 사이드이팩트가 들어가면 안되는데, 그떈 useEffect를 사용하면 된다 -> useSelector로 받아온 값을 useEffect종속성에 넣으면 그 값이 바뀌면 useEffect가 실행 -> 근데 useEffect는 처음 렌더링될때 실행이 되는데 이걸 막아야함 -> 처음에 비어있는 값을 백엔드로 보내고 거기에 저장된 모든 데이터를 덮어쓰기 때문
+* 함수 같은거 사용할때 try catch 문 사용할때  throw 던지는법
+```
+  throw new Error('asdasdasd');
+```
+* thunk: 다른작업이 완료될때까지 작업을 지연시키는 단순한 함수
+* dispatch는 작업객체가 아닌 함수인 작업을 디스패치하는것으로 확인되면 해당함수를 자동으로 실행한다
+```
+export const fetchCartData = () => {
+  
+  return async (dispatch) => { //자동으로 dispatch(fetchCartData) 할때 dispatch를 넣어준다
+```
