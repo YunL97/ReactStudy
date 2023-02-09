@@ -435,3 +435,26 @@ export const fetchCartData = () => {
   
   return async (dispatch) => { //자동으로 dispatch(fetchCartData) 할때 dispatch를 넣어준다
 ```
+* react-router을 사용할때는 Link를 통해서 이동가능하다
+```
+<Route path = '/welcome'>
+  <Welcome />
+</Route>
+```
+* a href를 사용하면 링크누를때마다 새페이지를 로드하는데 그러면 새로운 요청을 보낸다는뜻 -> 새링크가 시작되기 때문에 이 애플리케이션에서 가질 수 있는 어플리케이션 상태를 잃게된다
+* Link를 사용하면 된다
+* NavLink: 링크에 스타일을 넣을 때 사용
+* product/:productid == product/\<any value>
+* : 뒤에 어떤거가와도 product링크로 이동
+* useParams로 url 데이터를 가져올 수 있음
+```
+const params = useParams();
+console.log(params.productId);
+```
+* 리액트라우터를 사용할 때 현재경로와 일치하는 모든 라우트가 로드된다
+* product  
+* product/:productid 일때 url product/:productid 쓰면 product 링크에있는거 불러오고 그밑에 product/:productid 링크 컴포넌트를 불러옴
+* 그럴때는 라우터 위에 \<Switch>를 사용하면된다
+* \<Switch>: 첫번째로 매칭되는 path를 가진 컴포넌트를 렌더링 시킨다
+* \<Route> 안에 excat prop를 사용하면 딱 일치해야만 그라우터가 불러져온다
+* 중첩라우트: 기본페이지가 아닌 페이지 내부에도 라우트가 필요할 때 사용
