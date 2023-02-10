@@ -458,3 +458,9 @@ console.log(params.productId);
 * \<Switch>: 첫번째로 매칭되는 path를 가진 컴포넌트를 렌더링 시킨다
 * \<Route> 안에 excat prop를 사용하면 딱 일치해야만 그라우터가 불러져온다
 * 중첩라우트: 기본페이지가 아닌 페이지 내부에도 라우트가 필요할 때 사용
+* asd/:12 로 설정해놓고 asd/12 로 가면 parse로 12 가져올 수 있음
+* \<Route path='*'>\</Route>: 리액트 라우터에 모든 경로, 모든 url이 이 라우트와 일치해야 한다는 신호를 보냄
+* react-router-dom useHistory: push 같은거를 사용해서 이전으로 돌아갈 수 있음
+* react-router-dom Prompt: 다른곳으로 이동할 때 자동으로 감시, 특정조건이 충족되면 떠나기전에 경고를 표시해줌prompt
+* eact-router-dom useLocation: location 객체에 접속하게 하고 location 객체엔 최근 로드된 페이지와 URL 에 대한 정보가 있다.
+* 
