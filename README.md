@@ -463,4 +463,5 @@ console.log(params.productId);
 * react-router-dom useHistory: push 같은거를 사용해서 이전으로 돌아갈 수 있음
 * react-router-dom Prompt: 다른곳으로 이동할 때 자동으로 감시, 특정조건이 충족되면 떠나기전에 경고를 표시해줌prompt
 * eact-router-dom useLocation: location 객체에 접속하게 하고 location 객체엔 최근 로드된 페이지와 URL 에 대한 정보가 있다.
+* react-router-dom useRouteMatch: url을 가져와서 보다 유연하게 url을 짤수가있음
 * 
