@@ -464,4 +464,12 @@ console.log(params.productId);
 * react-router-dom Prompt: 다른곳으로 이동할 때 자동으로 감시, 특정조건이 충족되면 떠나기전에 경고를 표시해줌prompt
 * eact-router-dom useLocation: location 객체에 접속하게 하고 location 객체엔 최근 로드된 페이지와 URL 에 대한 정보가 있다.
 * react-router-dom useRouteMatch: url을 가져와서 보다 유연하게 url을 짤수가있음
-* 
+* 리액트 라우터가 버전6로 업데이트 되었다.
+  * Switch -> Routes  
+  * \<Route path='/welcome' element = {\<Welcome />} />
+  * expact 도 사라짐 -> 그럼 비슷한 링크는 다나오는거 아니야? -> /products/* 을 붙이면 된다 -> 그래서 라우트의 순서도 상관이 없어짐 -> 근데 * 없이도 리액트 라우터에서 알아서 가장 연관 깊은 라우트로 보내준다
+  * activeClassName 프로퍼티 삭제 -> classname{(navData) => {navData.isActive ? classes.active: ''}}
+  * Redirect -> Navigate -> 그냥 \<Route path="/" element = {Navigate to="welcome"} /> -> 현재 펭지를 새페이지로 교환하는 리디렉션을 원한다면 \<Route path="/" element = {Navigate replace to="welcome"} />
+  * Route가 한개여도 Routes로 감싸야함
+  * 
+  * 
