@@ -471,5 +471,20 @@ console.log(params.productId);
   * activeClassName 프로퍼티 삭제 -> classname{(navData) => {navData.isActive ? classes.active: ''}}
   * Redirect -> Navigate -> 그냥 \<Route path="/" element = {Navigate to="welcome"} /> -> 현재 펭지를 새페이지로 교환하는 리디렉션을 원한다면 \<Route path="/" element = {Navigate replace to="welcome"} />
   * Route가 한개여도 Routes로 감싸야함
+  * 중첩 라우트면 그전의 url은 안넣어도 된다. 
+  * 중앙에 모든 라우트를 정의하고 Outlet 컴포넌트를 사용하면 알아서 중첩이된다.
+  * useHistory -> useNavigate 훅 -> useNavigate(-2) 를 사용하면 이전의이전페이지로 이동
+* 6.4 버전: 데이터 fetching, submission을 간소화한 기능이 추가됨
+  * Route에서 loader: \<Route index element= {\<asdasd /> loader = {blogPostsLoader}}>: 라우트로 이동할때마다 자동으로 blogPostsLoader 함수 호출하고 반환한 데이터를 자동으로 가져와서 asdasd 컴포넌트에서 사용가능 -> useLoaderData훅을 사용하면됨
+  * BrowserRouter는 더이상 사용할 수 없음 -> RouterProvider 컴포넌트 사용
+  * Route index프로퍼티: 부모라우트의 경로가 활성화 되면 렌더링 된다
+  * Route errorElement 프로퍼티: 데이터 패칭을 수행하는 라우트에 사용해서 error이 발생하면 errorElement가 실행 -> 문제가 생겼을 때 렌더링될 컴포넌트나 jsx 코드를 정의할 수 있음
+  * useNavigation 훅: 이동정보 일부를 활용하게 해주는 객체를 제공하는 훅 ,해당 객체의 state 프로퍼티에 엑세스 하게 해준다
+  * 리액트 라우터는 페이지의 데이터가 전부 로드될떄까지 기다렷다가 페이지를 이동한다 -> defer 함수를 사용-> 데이터를 가져오는 함수를 defer로 감싸면됨
+  * ```
+    defer({posts: getSlowPosts()});
+    ```
+    
+  * 하면 위의 시간동안 Await 컴포넌트가 띄워짐 -> Suspense 컴포넌트로 Awiat 를 감싸야함
   * 
-  * 
+  *  
