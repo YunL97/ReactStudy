@@ -484,7 +484,7 @@ console.log(params.productId);
   * ```
     defer({posts: getSlowPosts()});
     ```
-    
+
   * 하면 위의 시간동안 Await 컴포넌트가 띄워짐 -> Suspense 컴포넌트로 Awiat 를 감싸야함
-  * 
+  * useFetcher: 백그라운드로 데이터를 보내고 싶을때 사용 ex) 뉴스레터 보내고 그페이지에 계속 있고 싶을 때 사용
   *  
