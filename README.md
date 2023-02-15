@@ -513,4 +513,9 @@ const Login = lazy(() => import('@/pages/login/LoginPage').then(module => ({ def
   }
 >
 ```
-* 
+* join 함수: 
+```
+arr  = ['a', 'b', 'c'];
+arr.join(' '); // "a b c"
+```
+* 리액트에서 애니메이션 사용할때는 Transtion(react-transition-group) 컴포넌트를 사용한다

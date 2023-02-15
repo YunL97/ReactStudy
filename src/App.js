@@ -1,44 +1,72 @@
-import React, { Suspense } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import React, { Component } from "react";
+import Transition from "react-transition-group/Transition";
 
-import Layout from './components/layout/Layout';
-import LoadingSpinner from './components/ui/LoadingSpinner';
+import "./App.css";
+import Modal from "./components/Modal/Modal";
+import Backdrop from "./components/Backdrop/Backdrop";
+import List from "./components/List/List";
 
-const NewQuote = React.lazy(() => import('./pages/NewQuote'));
-const QuoteDetail = React.lazy(() => import('./pages/QuoteDetail'));
-const NotFound = React.lazy(() => import('./pages/NotFound'));
-const AllQuotes = React.lazy(() => import('./pages/AllQuotes'));
+class App extends Component {
+  state = {
+    modalIsOpen: false,
+    showBlock: false
+  };
 
-function App() {
-  return (
-    <Layout>
-      <Suspense
-        fallback={
-          <div className='centered'>
-            <LoadingSpinner />
-          </div>
-        }
-      >
-        <Switch>
-          <Route path='/' exact>
-            <Redirect to='/quotes' />
-          </Route>
-          <Route path='/quotes' exact>
-            <AllQuotes />
-          </Route>
-          <Route path='/quotes/:quoteId'>
-            <QuoteDetail />
-          </Route>
-          <Route path='/new-quote'>
-            <NewQuote />
-          </Route>
-          <Route path='*'>
-            <NotFound />
-          </Route>
-        </Switch>
-      </Suspense>
-    </Layout>
-  );
+  showModal = () => {
+    this.setState({ modalIsOpen: true });
+  };
+
+  closeModal = () => {
+    this.setState({ modalIsOpen: false });
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <h1>React Animations</h1>
+        <button
+          className="Button"
+          onClick={() =>
+            this.setState(prevState => ({ showBlock: !prevState.showBlock }))}
+        >
+          Toggle
+        </button>
+        <br />
+        <Transition
+          in={this.state.showBlock}
+          timeout={1000}
+          mountOnEnter
+          unmountOnExit
+          onEnter={() => console.log('onEnter')}
+          onEntering={() => console.log('onEntering')}
+          onEntered={() => console.log('onEntered')}
+          onExit={() => console.log('onExit')}
+          onExiting={() => console.log('onExiting')}
+          onExited={() => console.log('onExited')}
+        >
+          {state => (
+            <div
+              style={{
+                backgroundColor: "red",
+                width: 100,
+                height: 100,
+                margin: "auto",
+                transition: "opacity 1s ease-out",
+                opacity: state === "exiting" ? 0 : 1
+              }}
+            />
+          )}
+        </Transition>
+        <Modal show={this.state.modalIsOpen} closed={this.closeModal} />
+        {this.state.modalIsOpen ? <Backdrop show /> : null}
+        <button className="Button" onClick={this.showModal}>
+          Open Modal
+        </button>
+        <h3>Animating Lists</h3>
+        <List />
+      </div>
+    );
+  }
 }
 
 export default App;
