@@ -498,4 +498,19 @@ console.log(params.productId);
 *  네비게이션가드: ex 로그인이 되어있지 않은데 url 에 직접 쳐서 들어가면 들어가지는 걸 막는 방법
 * 토큰 받아와서 리랜더링 하면 없어지기 때문에 따로 저장을 해야한다
 * useEffect로 함수 실행할때 useCallback 사용해야하고 의존성 추가해야하는데 브라주저 빌트인 함수여서 의존성 추가하지 않아도 된다
+* LazyLoading: 해당 코드가 필요할 때만 그 특정 코드를 로딩하는것 -> 왜쓰냐면 코드를 압축해서 사용자에게 한번에 보내기 때문에 우리가 최초의 코드를 최대한 작게 만들어야함 -> 특정한 코드는 진짜로 해당 페이지에 들어올 때만 다운로드 되도록 해야한다 -> 코드를 여러 덩어리, 여러 번들로 나누고 각각 필요할때만 다운로드 하는것이 레이지 로딩 -> 라우팅을 사용하는경우 구현하기 편하다
+* import문 따라서 모든 코드가 미리 다운로드되고 해당 페이지와 해당페이지에서 사용하는 모든 컴포넌트에 대한 코드를 모든 페이지에 방문하지 않더라도 다운로드한다
+```
+const Login = lazy(() => import('@/pages/login/LoginPage').then(module => ({ default: module.Login })))
+
+<Route path={RouterPath.LOGIN} element={<Login />} />
+```
+* lazy 로 다울로드 하면 얼마나 걸릴지 모르기 때문에 \<Suspense> 로 감싸줘야함 -> 리액트 라이브러리 자체에서 제공되는 특수 컴포넌트
+```
+<Suspense
+  fallback={
+    <LoadingSpinner / >
+  }
+>
+```
 * 
