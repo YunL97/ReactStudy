@@ -547,4 +547,39 @@ arr.join(' '); // "a b c"
     * 속도문제
     * 특히 데이터를 보내고 바로 이동하는 페이지에서 세션으로부터 특정값을 읽어올 때 새로고침해야하는 문제도 발생
   * 그래서 전역 상태관리를 사용하면 편하다
-  *   
+
+* 파일 순서: 
+  * components:가장 작은단위 ui컴포넌트 ec)버튼
+  * domain: 가장작은단위 ui컴포넌트를 모아놓은 컴포넌트 ex)card
+  * pages: domain과 component가 결합된 페이지단위
+
+* model을 사용하는이유: 모델을 만들어놓으면 함수로 데이터같은거 커스텀타입으로사용가능하고 협업할때 헷갈릴수있는것을 방지 및 에러를 줄여준다.
+```
+export namespace ArtistHistModel {
+  export interface ArtistHist {
+    a: string,
+    b: string
+  }
+}
+
+
+interface ArtistAwardsHist {
+  artistAwardsHist: ReadonlyArray<ArtistHistModel.ArtistHist> | undefined
+}
+
+export const ArtistAward = ({ artistAwardsHist }: ArtistAwardsHist) => {
+  return (
+    <>
+      {/* HistoryItem 반복 */}
+      {artistAwardsHist?.map(item => (
+        <>
+          <HistoryItem>
+            <HistoryYear>{item.a}</HistoryYear>
+            <HistoryTxt>{item.b}</HistoryTxt>
+          </HistoryItem>
+        </>
+      ))}
+    </>
+  )
+}
+```
