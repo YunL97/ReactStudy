@@ -583,3 +583,5 @@ export const ArtistAward = ({ artistAwardsHist }: ArtistAwardsHist) => {
   )
 }
 ```
+* env란: 웹, 앱을 개발하다보면 중요정보들을 팀만알아야하는경우에 오픈소스에 올리면 안되는데 이떄 env파일에 넣어서 사용한다. 변수명은 반드시 REACT_APP_으로 사용
+* 사용법 process.env.REACT_APP_변수이름
