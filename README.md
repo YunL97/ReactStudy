@@ -599,5 +599,11 @@ export const ArtistAward = ({ artistAwardsHist }: ArtistAwardsHist) => {
    *  동적 url: spa는 주로 동적 url을 사용해서 페이지를 표시하고 업데이트하는데 동적 url은 검색엔진에게 페이지의 구조를 이해하기 어렵게 만들 수 있다. 검색엔진은 정적인 url구조를 선호, 동적 url은 색인화 하는데 어려움
    *  링크공유문제: spa는 일반적으로 페이지 전환을 자바스크립트로 처리하고 url을 업데이트 하지 않는다. -> 특정 페이지를 직접 공유할 때 문제가 발생할 수 있다.
   
-* 컴포넌트의 hsx코드는 너무 복잡하면 안된다.
-* 
+* 컴포넌트의 jsx코드는 너무 복잡하면 안된다.
+```
+{modalIsOpen ? <Modal /> : null}
+
+===
+
+{modalIsOpen && <Modal />}
+```
