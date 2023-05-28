@@ -607,3 +607,10 @@ export const ArtistAward = ({ artistAwardsHist }: ArtistAwardsHist) => {
 
 {modalIsOpen && <Modal />}
 ```
+* router 사용할때 딱맞는 링크에만 컴포넌트를 띄워주고 싶으면
+```
+<Route path='/' exact>
+```
+* route Link컴포넌트를 사용하면 브라우저가 자동으로 요청을 보내는걸 막아주고 url주소를 파싱한다음 브라우저 주소 표시줄에 바꿔놓는것, 하지만 요청을 보내는 대신 react와 js로 적절한 컴포넌트를 화면에 출력하는것 그래야 화면에 뜬 페이지도 유지하고 추가 요청도 보내지 않는다.
+* 특정 컴포넌트에 css 정의하는법 .module.css 라고하면 됨
+* 
